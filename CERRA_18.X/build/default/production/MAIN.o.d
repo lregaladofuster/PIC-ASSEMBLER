@@ -1,0 +1,7 @@
+build/default/production/MAIN.o:  \
+	F:/PROYECTO/CERRA_18.X/MAIN.asm  \
+	F:/PROYECTO/CERRA_18.X/VERIFICACION.inc  \
+	F:/PROYECTO/CERRA_18.X/EEPROM.inc  \
+	F:/PROYECTO/CERRA_18.X/PASSWORD.inc  \
+	F:/PROYECTO/CERRA_18.X/libreria.inc  \
+

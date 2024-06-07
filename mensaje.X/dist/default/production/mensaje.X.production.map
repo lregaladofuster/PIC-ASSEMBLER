@@ -1,0 +1,147 @@
+MPLINK 5.09, LINKER
+Linker Map File - Created Thu Jul 04 20:09:06 2019
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000004
+                   .cinit    romdata   0x000004    program   0x000002
+                   .org_1       code   0x000020    program   0x000032
+                   .org_2       code   0x000100    program   0x00047c
+.config_300000_BUILD/DEFAULT/PRODUCTION/PRINCIP    romdata   0x300000    program   0x000001
+.config_300001_BUILD/DEFAULT/PRODUCTION/PRINCIP    romdata   0x300001    program   0x000001
+.config_300002_BUILD/DEFAULT/PRODUCTION/PRINCIP    romdata   0x300002    program   0x000001
+.config_300003_BUILD/DEFAULT/PRODUCTION/PRINCIP    romdata   0x300003    program   0x000001
+.config_300005_BUILD/DEFAULT/PRODUCTION/PRINCIP    romdata   0x300005    program   0x000001
+.config_300006_BUILD/DEFAULT/PRODUCTION/PRINCIP    romdata   0x300006    program   0x000001
+.config_300008_BUILD/DEFAULT/PRODUCTION/PRINCIP    romdata   0x300008    program   0x000001
+.config_300009_BUILD/DEFAULT/PRODUCTION/PRINCIP    romdata   0x300009    program   0x000001
+.config_30000A_BUILD/DEFAULT/PRODUCTION/PRINCIP    romdata   0x30000a    program   0x000001
+.config_30000B_BUILD/DEFAULT/PRODUCTION/PRINCIP    romdata   0x30000b    program   0x000001
+.config_30000C_BUILD/DEFAULT/PRODUCTION/PRINCIP    romdata   0x30000c    program   0x000001
+.config_30000D_BUILD/DEFAULT/PRODUCTION/PRINCIP    romdata   0x30000d    program   0x000001
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000005      
+                            0x000020    0x000051      
+                            0x000100    0x00057b      
+                            0x300000    0x300003      
+                            0x300005    0x300006      
+                            0x300008    0x30000d      
+            1216 out of 33048 program addresses used, program memory utilization is 3%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                  CONFIGU   0x000028    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     DESB   0x000526    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    DESB_   0x00052a    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     DESP   0x000538    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   LETRA0   0x000176    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   LETRA1   0x0001ee    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   LETRA2   0x000264    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   LETRA3   0x0002e6    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   LETRA4   0x000362    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   LETRA5   0x0003e0    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   LETRA6   0x000460    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   LETRA7   0x0004da    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                       M1   0x000024    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     MEN0   0x000148    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    MEN0_   0x00014a    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   MEN0__   0x000154    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     MEN1   0x0001c0    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    MEN1_   0x0001c2    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   MEN1__   0x0001cc    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     MEN2   0x000236    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    MEN2_   0x000238    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   MEN2__   0x000242    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     MEN3   0x0002b8    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    MEN3_   0x0002ba    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   MEN3__   0x0002c4    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     MEN4   0x000334    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    MEN4_   0x000336    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   MEN4__   0x000340    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     MEN5   0x0003b2    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    MEN5_   0x0003b4    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   MEN5__   0x0003be    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     MEN6   0x000432    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    MEN6_   0x000434    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   MEN6__   0x00043e    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     MEN7   0x0004ac    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    MEN7_   0x0004ae    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   MEN7__   0x0004b8    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     Main   0x000020    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    T10US   0x000572    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   T10ms_   0x00055e    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   T10us_   0x000576    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     T1MS   0x000566    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    T1ms_   0x00056a    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   T250MS   0x000550    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                  T250ms_   0x000554    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     TRAB   0x000100    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     TXMS   0x00055c    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                      TXS   0x000540    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     Txs_   0x000542    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     Main   0x000020    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                       M1   0x000024    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                  CONFIGU   0x000028    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     TRAB   0x000100    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     MEN0   0x000148    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    MEN0_   0x00014a    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   MEN0__   0x000154    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   LETRA0   0x000176    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     MEN1   0x0001c0    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    MEN1_   0x0001c2    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   MEN1__   0x0001cc    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   LETRA1   0x0001ee    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     MEN2   0x000236    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    MEN2_   0x000238    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   MEN2__   0x000242    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   LETRA2   0x000264    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     MEN3   0x0002b8    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    MEN3_   0x0002ba    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   MEN3__   0x0002c4    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   LETRA3   0x0002e6    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     MEN4   0x000334    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    MEN4_   0x000336    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   MEN4__   0x000340    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   LETRA4   0x000362    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     MEN5   0x0003b2    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    MEN5_   0x0003b4    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   MEN5__   0x0003be    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   LETRA5   0x0003e0    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     MEN6   0x000432    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    MEN6_   0x000434    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   MEN6__   0x00043e    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   LETRA6   0x000460    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     MEN7   0x0004ac    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    MEN7_   0x0004ae    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   MEN7__   0x0004b8    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   LETRA7   0x0004da    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     DESB   0x000526    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    DESB_   0x00052a    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     DESP   0x000538    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                      TXS   0x000540    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     Txs_   0x000542    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   T250MS   0x000550    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                  T250ms_   0x000554    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     TXMS   0x00055c    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   T10ms_   0x00055e    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                     T1MS   0x000566    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    T1ms_   0x00056a    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                    T10US   0x000572    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+                   T10us_   0x000576    program     static C:\Users\luiseduardo\Desktop\mplab\EJEMPLO_ASM\mensaje.X\PRINCIPAL.asm
+
+

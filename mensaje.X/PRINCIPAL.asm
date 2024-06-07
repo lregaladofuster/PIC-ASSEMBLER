@@ -1,0 +1,774 @@
+
+
+;******************************************************************************
+;   This file is a basic template for assembly code for a PIC18F4550. Copy    *
+;   this file into your project directory and modify or add to it as needed.  *
+;                                                                             *
+;   Refer to the MPASM User's Guide for additional information on the         *
+;   features of the assembler.                                                *
+;                                                                             *
+;   Refer to the PIC18Fx455/x550 Data Sheet for additional                    *
+;   information on the architecture and instruction set.                      *
+;                                                                             *
+;******************************************************************************
+;                                                                             *
+;    Filename:                                                                *
+;    Date:                                                                    *
+;    File Version:                                                            *
+;                                                                             *
+;    Author:                                                                  *
+;    Company:                                                                 *
+;                                                                             * 
+;******************************************************************************
+;                                                                             *
+;    Files Required: P18F4550.INC                                             *
+;                                                                             *
+;******************************************************************************
+
+	LIST P=18F4550		;directive to define processor
+	#include <P18F4550.INC>	;processor specific variable definitions
+
+;******************************************************************************
+;Configuration bits
+;Microchip has changed the format for defining the configuration bits, please 
+;see the .inc file for futher details on notation.  Below are a few examples.
+
+
+
+;   Oscillator Selection:
+    ; CONFIG1L
+      CONFIG  PLLDIV = 1            ; PLL Prescaler Selection bits (No prescale (4 MHz oscillator input drives PLL directly))
+      CONFIG  CPUDIV = OSC1_PLL2    ; System Clock Postscaler Selection bits ([Primary Oscillator Src: /1][96 MHz PLL Src: /2])
+      CONFIG  USBDIV = 1            ; USB Clock Selection bit (used in Full-Speed USB mode only; UCFG:FSEN = 1) (USB clock source comes directly from the primary oscillator block with no postscale)
+
+    ; CONFIG1H
+      CONFIG  FOSC = HS             ; Oscillator Selection bits (HS oscillator (HS))
+      CONFIG  FCMEN = ON            ; Fail-Safe Clock Monitor Enable bit (Fail-Safe Clock Monitor enabled)
+      CONFIG  IESO = ON             ; Internal/External Oscillator Switchover bit (Oscillator Switchover mode enabled)
+
+    ; CONFIG2L
+      CONFIG  PWRT = ON             ; Power-up Timer Enable bit (PWRT enabled)
+      CONFIG  BOR = OFF             ; Brown-out Reset Enable bits (Brown-out Reset disabled in hardware and software)
+      CONFIG  BORV = 3              ; Brown-out Reset Voltage bits (Minimum setting 2.05V)
+      CONFIG  VREGEN = OFF          ; USB Voltage Regulator Enable bit (USB voltage regulator disabled)
+
+    ; CONFIG2H
+      CONFIG  WDT = OFF             ; Watchdog Timer Enable bit (WDT disabled (control is placed on the SWDTEN bit))
+      CONFIG  WDTPS = 32768         ; Watchdog Timer Postscale Select bits (1:32768)
+
+    ; CONFIG3H
+      CONFIG  CCP2MX = ON           ; CCP2 MUX bit (CCP2 input/output is multiplexed with RC1)
+      CONFIG  PBADEN = OFF          ; PORTB A/D Enable bit (PORTB<4:0> pins are configured as digital I/O on Reset)
+      CONFIG  LPT1OSC = OFF         ; Low-Power Timer 1 Oscillator Enable bit (Timer1 configured for higher power operation)
+      CONFIG  MCLRE = ON            ; MCLR Pin Enable bit (MCLR pin enabled; RE3 input pin disabled)
+
+    ; CONFIG4L
+      CONFIG  STVREN = ON           ; Stack Full/Underflow Reset Enable bit (Stack full/underflow will cause Reset)
+      CONFIG  LVP = OFF             ; Single-Supply ICSP Enable bit (Single-Supply ICSP disabled)
+      CONFIG  ICPRT = OFF           ; Dedicated In-Circuit Debug/Programming Port (ICPORT) Enable bit (ICPORT disabled)
+      CONFIG  XINST = OFF           ; Extended Instruction Set Enable bit (Instruction set extension and Indexed Addressing mode disabled (Legacy mode))
+
+    ; CONFIG5L
+      CONFIG  CP0 = OFF             ; Code Protection bit (Block 0 (000800-001FFFh) is not code-protected)
+      CONFIG  CP1 = OFF             ; Code Protection bit (Block 1 (002000-003FFFh) is not code-protected)
+      CONFIG  CP2 = OFF             ; Code Protection bit (Block 2 (004000-005FFFh) is not code-protected)
+      CONFIG  CP3 = OFF             ; Code Protection bit (Block 3 (006000-007FFFh) is not code-protected)
+
+    ; CONFIG5H
+      CONFIG  CPB = OFF             ; Boot Block Code Protection bit (Boot block (000000-0007FFh) is not code-protected)
+      CONFIG  CPD = OFF             ; Data EEPROM Code Protection bit (Data EEPROM is not code-protected)
+
+    ; CONFIG6L
+      CONFIG  WRT0 = OFF            ; Write Protection bit (Block 0 (000800-001FFFh) is not write-protected)
+      CONFIG  WRT1 = OFF            ; Write Protection bit (Block 1 (002000-003FFFh) is not write-protected)
+      CONFIG  WRT2 = OFF            ; Write Protection bit (Block 2 (004000-005FFFh) is not write-protected)
+      CONFIG  WRT3 = OFF            ; Write Protection bit (Block 3 (006000-007FFFh) is not write-protected)
+
+    ; CONFIG6H
+      CONFIG  WRTC = OFF            ; Configuration Register Write Protection bit (Configuration registers (300000-3000FFh) are not write-protected)
+      CONFIG  WRTB = OFF            ; Boot Block Write Protection bit (Boot block (000000-0007FFh) is not write-protected)
+      CONFIG  WRTD = OFF            ; Data EEPROM Write Protection bit (Data EEPROM is not write-protected)
+
+    ; CONFIG7L
+      CONFIG  EBTR0 = OFF           ; Table Read Protection bit (Block 0 (000800-001FFFh) is not protected from table reads executed in other blocks)
+      CONFIG  EBTR1 = OFF           ; Table Read Protection bit (Block 1 (002000-003FFFh) is not protected from table reads executed in other blocks)
+      CONFIG  EBTR2 = OFF           ; Table Read Protection bit (Block 2 (004000-005FFFh) is not protected from table reads executed in other blocks)
+      CONFIG  EBTR3 = OFF           ; Table Read Protection bit (Block 3 (006000-007FFFh) is not protected from table reads executed in other blocks)
+
+    ; CONFIG7H
+      CONFIG  EBTRB = OFF           ; Boot Block Table Read Protection bit (Boot block (000000-0007FFh) is not protected from table reads executed in other blocks)
+;******************************************************************************
+;Variable definitions
+; These variables are only needed if low priority interrupts are used. 
+; More variables may be needed to store other special function registers used
+; in the interrupt routines.
+
+	CBLOCK	0x080
+	WREG_TEMP	;variable used for context saving 
+	STATUS_TEMP	;variable used for context saving
+	BSR_TEMP	;variable used for context saving
+	T1,T2,T3,T4
+	TA
+	CONT1
+	CONT2
+	CONT3
+	CONT4
+	DATO
+	ENDC
+
+#DEFINE BOT1	PORTB,0
+#DEFINE BOT2	PORTB,1
+#DEFINE BOT3	PORTB,2
+#DEFINE CLK1	LATB,3
+#DEFINE DAT1	LATB,4 ; 1 Y 0 LOGICO
+	
+#DEFINE SALIDA	LATD
+;Reset vector
+	ORG	0x0000
+	GOTO	Main
+	ORG	0X0020
+Main:
+	BTFSC	OSCCON,.3;primary oscillator is stopping
+	BRA	M1
+M1	BTFSS	OSCCON,.3;primary oscillator is running
+	BRA	M1
+CONFIGU:
+	BCF	INTCON,.7;DESACTIVAR INTERRUPCIONES
+	BCF	INTCON,.6
+	CLRF	PORTA
+	CLRF	LATA
+	MOVLW	0Fh	; Configure A/D
+	MOVWF	ADCON1	; for digital inputs
+	MOVLW	07h	; Configure comparators
+	MOVWF	CMCON	; for digital input
+	MOVLW	0X00
+	MOVWF	TRISA
+	
+	CLRF	PORTB
+	CLRF	LATB
+	MOVLW	0X07
+	MOVWF	TRISB
+	CLRF	LATB
+	
+	CLRF	PORTD
+	CLRF	LATD
+	MOVLW	0X00
+	MOVWF	TRISD
+	CLRF	LATD
+	BRA	TRAB
+	
+	
+	ORG	0X0100
+TRAB:	MOVF	PORTB,W
+	ANDLW	0X07
+	MOVWF	DATO
+	
+	MOVF	DATO,W
+	XORLW	.0
+	BTFSC	STATUS,Z
+	RCALL	MEN0
+	
+	MOVF	DATO,W
+	XORLW	.1
+	BTFSC	STATUS,Z
+	RCALL	MEN1
+	
+	MOVF	DATO,W
+	XORLW	.2
+	BTFSC	STATUS,Z
+	RCALL	MEN2
+	
+	MOVF	DATO,W
+	XORLW	.3
+	BTFSC	STATUS,Z
+	RCALL	MEN3
+	
+	MOVF	DATO,W
+	XORLW	.4
+	BTFSC	STATUS,Z
+	RCALL	MEN4
+	
+	MOVF	DATO,W
+	XORLW	.5
+	BTFSC	STATUS,Z
+	RCALL	MEN5
+	
+	MOVF	DATO,W
+	XORLW	.6
+	BTFSC	STATUS,Z
+	RCALL	MEN6
+	
+	MOVF	DATO,W
+	XORLW	.7
+	BTFSC	STATUS,Z
+	RCALL	MEN7
+	
+	BRA	TRAB
+	
+	;ORG	0X200
+MEN0:	CLRF	CONT3
+MEN0_	MOVF	CONT3,W
+	MOVWF	CONT2
+	RCALL	DESB
+	MOVLW	.16
+	MOVWF	CONT1
+MEN0__	MOVF	CONT2,W
+	RCALL	LETRA0
+	MOVWF	LATD
+	RCALL	DESP
+	MOVLW	.2
+	RCALL	TXMS
+	INCF	CONT2,F
+	INCF	CONT2,F
+	DECFSZ	CONT1,1,1
+	BRA	MEN0__
+	INCF	CONT3,F
+	INCF	CONT3,F
+	MOVF	CONT3,W
+	XORLW	.42
+	BTFSS	STATUS,Z
+	BRA	MEN0_
+	RETURN
+LETRA0:	ADDWF	PCL
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'01111101';A
+	RETLW	B'00100011';L
+	RETLW	B'00111111';O
+	RETLW	B'01101101';H
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	
+	;ORG	0X300
+MEN1:	CLRF	CONT3
+MEN1_	MOVF	CONT3,W
+	MOVWF	CONT2
+	RCALL	DESB
+	MOVLW	.16
+	MOVWF	CONT1
+MEN1__	MOVF	CONT2,W
+	RCALL	LETRA1
+	MOVWF	LATD
+	RCALL	DESP
+	MOVLW	.2
+	RCALL	TXMS
+	INCF	CONT2,F
+	INCF	CONT2,F
+	DECFSZ	CONT1,1,1
+	BRA	MEN1__
+	INCF	CONT3,F
+	INCF	CONT3,F
+	MOVF	CONT3,W
+	XORLW	.42
+	BTFSS	STATUS,Z
+	BRA	MEN1_
+	RETURN
+LETRA1:	ADDWF	PCL
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'01110110';S
+	RETLW	B'00100001';I
+	RETLW	B'01110110';S
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	
+	;ORG	0X400
+MEN2:	CLRF	CONT3
+MEN2_	MOVF	CONT3,W
+	MOVWF	CONT2
+	RCALL	DESB
+	MOVLW	.16
+	MOVWF	CONT1
+MEN2__	MOVF	CONT2,W
+	RCALL	LETRA2
+	MOVWF	LATD
+	RCALL	DESP
+	MOVLW	.2
+	RCALL	TXMS
+	INCF	CONT2,F
+	INCF	CONT2,F
+	DECFSZ	CONT1,1,1
+	BRA	MEN2__
+	INCF	CONT3,F
+	INCF	CONT3,F
+	MOVF	CONT3,W
+	XORLW	.42
+	BTFSS	STATUS,Z
+	BRA	MEN2_
+	RETURN
+LETRA2:	ADDWF	PCL	
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'01110110';S
+	RETLW	B'01110011';E
+	RETLW	B'00100011';L
+	RETLW	B'01111101';A
+	RETLW	B'00011100';T
+	RETLW	B'00100001';I
+	RETLW	B'01111110';g
+	RETLW	B'00100001';I
+	RETLW	B'01001111';d
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+
+	;ORG	0X500
+MEN3:	CLRF	CONT3
+MEN3_	MOVF	CONT3,W
+	MOVWF	CONT2
+	RCALL	DESB
+	MOVLW	.16
+	MOVWF	CONT1
+MEN3__	MOVF	CONT2,W
+	RCALL	LETRA3
+	MOVWF	LATD
+	RCALL	DESP
+	MOVLW	.2
+	RCALL	TXMS
+	INCF	CONT2,F
+	INCF	CONT2,F
+	DECFSZ	CONT1,1,1
+	BRA	MEN3__
+	INCF	CONT3,F
+	INCF	CONT3,F
+	MOVF	CONT3,W
+	XORLW	.42
+	BTFSS	STATUS,Z
+	BRA	MEN3_
+	RETURN
+LETRA3:	ADDWF	PCL
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00111111';O
+	RETLW	B'00001111';J
+	RETLW	B'01110011';E
+	RETLW	B'01111001';P
+	RETLW	B'01110110';S
+	RETLW	B'01110011';E
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	
+	;ORG	0X600
+MEN4:	CLRF	CONT3
+MEN4_	MOVF	CONT3,W
+	MOVWF	CONT2
+	RCALL	DESB
+	MOVLW	.16
+	MOVWF	CONT1
+MEN4__	MOVF	CONT2,W
+	RCALL	LETRA4
+	MOVWF	LATD
+	RCALL	DESP
+	MOVLW	.2
+	RCALL	TXMS
+	INCF	CONT2,F
+	INCF	CONT2,F
+	DECFSZ	CONT1,1,1
+	BRA	MEN4__
+	INCF	CONT3,F
+	INCF	CONT3,F
+	MOVF	CONT3,W
+	XORLW	.42
+	BTFSS	STATUS,Z
+	BRA	MEN4_
+	RETURN
+LETRA4:	ADDWF	PCL
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'01110110';S
+	RETLW	B'01110011';E
+	RETLW	B'01000101';n
+	RETLW	B'01111101';A
+	RETLW	B'01110011';E
+	RETLW	B'00100001';I
+	RETLW	B'00101111';U
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	
+	;ORG	0X700
+MEN5:	CLRF	CONT3
+MEN5_	MOVF	CONT3,W
+	MOVWF	CONT2
+	RCALL	DESB
+	MOVLW	.16
+	MOVWF	CONT1
+MEN5__	MOVF	CONT2,W
+	RCALL	LETRA5
+	MOVWF	LATD
+	RCALL	DESP
+	MOVLW	.2
+	RCALL	TXMS
+	INCF	CONT2,F
+	INCF	CONT2,F
+	DECFSZ	CONT1,1,1
+	BRA	MEN5__
+	INCF	CONT3,F
+	INCF	CONT3,F
+	MOVF	CONT3,W
+	XORLW	.42
+	BTFSS	STATUS,Z
+	BRA	MEN5_
+	RETURN	
+LETRA5:	ADDWF	PCL
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'01110110';5
+	RETLW	B'01000000';-
+	RETLW	B'01011110';3
+	RETLW	B'00101101';||
+	RETLW	B'00111111';0
+	RETLW	B'00001100';1
+	RETLW	B'01000000';-
+	RETLW	B'00111100';7
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	
+	;ORG	0X800
+MEN6:	CLRF	CONT3
+MEN6_	MOVF	CONT3,W
+	MOVWF	CONT2
+	RCALL	DESB
+	MOVLW	.16
+	MOVWF	CONT1
+MEN6__	MOVF	CONT2,W
+	RCALL	LETRA6
+	MOVWF	LATD
+	RCALL	DESP
+	MOVLW	.2
+	RCALL	TXMS
+	INCF	CONT2,F
+	INCF	CONT2,F
+	DECFSZ	CONT1,1,1
+	BRA	MEN6__
+	INCF	CONT3,F
+	INCF	CONT3,F
+	MOVF	CONT3,W
+	XORLW	.42
+	BTFSS	STATUS,Z
+	BRA	MEN6_
+	RETURN		
+LETRA6:	ADDWF	PCL
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'01110011';E
+	RETLW	B'01001111';d
+	RETLW	B'01000001';r
+	RETLW	B'01111101';A
+	RETLW	B'00011100';T
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	
+	;ORG	0X900
+MEN7:	CLRF	CONT3
+MEN7_	MOVF	CONT3,W
+	MOVWF	CONT2
+	RCALL	DESB
+	MOVLW	.16
+	MOVWF	CONT1
+MEN7__	MOVF	CONT2,W
+	RCALL	LETRA7
+	MOVWF	LATD
+	RCALL	DESP
+	MOVLW	.2
+	RCALL	TXMS
+	INCF	CONT2,F
+	INCF	CONT2,F
+	DECFSZ	CONT1,1,1
+	BRA	MEN7__
+	INCF	CONT3,F
+	INCF	CONT3,F
+	MOVF	CONT3,W
+	XORLW	.42
+	BTFSS	STATUS,Z
+	BRA	MEN7_
+	RETURN	
+LETRA7:	ADDWF	PCL
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'01110110';S
+	RETLW	B'00111111';O
+	RETLW	B'00100001';I
+	RETLW	B'01001111';d
+	RETLW	B'01111101';A
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	RETLW	B'00000000';NULO
+	
+
+
+
+
+
+
+
+	
+DESB:	MOVLW	.20
+	MOVWF	TA
+DESB_	RCALL	DESP
+	DECFSZ	TA,1,1
+	BRA	DESB_
+	BCF	DAT1
+	BSF	CLK1
+	BCF	CLK1
+	RETURN
+DESP:	BSF	DAT1
+	BSF	CLK1
+	BCF	CLK1
+	RETURN
+	
+TXS:	MOVWF	T4
+Txs_	RCALL	T250MS
+	RCALL	T250MS
+	RCALL	T250MS
+	RCALL	T250MS
+	DECFSZ	T4,1,1
+	BRA	Txs_
+	RETURN
+	
+T250MS:	MOVLW	.250
+	MOVWF	T3
+T250ms_	RCALL	T1MS
+	DECFSZ	T3,1,1
+	BRA	T250ms_
+	RETURN	
+	
+TXMS:	MOVWF	T3
+T10ms_	RCALL	T1MS
+	DECFSZ	T3,1,1
+	BRA	T10ms_
+	RETURN	
+T1MS:	MOVLW	.100
+	MOVWF	T2
+T1ms_	RCALL	T10US
+	DECFSZ	T2,1,1
+	BRA	T1ms_
+	RETURN
+T10US:	MOVLW	.15	
+	MOVWF	T1	
+T10us_	DECFSZ	T1,1,1
+	BRA	T10us_	
+	RETURN	
+	
+	END

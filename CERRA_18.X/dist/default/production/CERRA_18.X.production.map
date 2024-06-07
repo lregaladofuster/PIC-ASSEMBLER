@@ -1,0 +1,148 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Tue Oct 18 18:15:12 2016
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000002
+                   .org_1       code   0x000020    program   0x0000a0
+                   .org_2       code   0x000100    program   0x0000c2
+                   .org_3       code   0x000200    program   0x0000fa
+                   .org_4       code   0x000300    program   0x00010e
+                   .cinit    romdata   0x00040e    program   0x000002
+                   .org_5       code   0x000410    program   0x00008c
+.config_300000_BUILD/DEFAULT/PRODUCTION/MAIN.O    romdata   0x300000    program   0x000001
+.config_300001_BUILD/DEFAULT/PRODUCTION/MAIN.O    romdata   0x300001    program   0x000001
+.config_300002_BUILD/DEFAULT/PRODUCTION/MAIN.O    romdata   0x300002    program   0x000001
+.config_300003_BUILD/DEFAULT/PRODUCTION/MAIN.O    romdata   0x300003    program   0x000001
+.config_300005_BUILD/DEFAULT/PRODUCTION/MAIN.O    romdata   0x300005    program   0x000001
+.config_300006_BUILD/DEFAULT/PRODUCTION/MAIN.O    romdata   0x300006    program   0x000001
+.config_300008_BUILD/DEFAULT/PRODUCTION/MAIN.O    romdata   0x300008    program   0x000001
+.config_300009_BUILD/DEFAULT/PRODUCTION/MAIN.O    romdata   0x300009    program   0x000001
+.config_30000A_BUILD/DEFAULT/PRODUCTION/MAIN.O    romdata   0x30000a    program   0x000001
+.config_30000B_BUILD/DEFAULT/PRODUCTION/MAIN.O    romdata   0x30000b    program   0x000001
+.config_30000C_BUILD/DEFAULT/PRODUCTION/MAIN.O    romdata   0x30000c    program   0x000001
+.config_30000D_BUILD/DEFAULT/PRODUCTION/MAIN.O    romdata   0x30000d    program   0x000001
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000001      
+                            0x000020    0x0000bf      
+                            0x000100    0x0001c1      
+                            0x000200    0x0002f9      
+                            0x000300    0x00049b      
+                            0x300000    0x300003      
+                            0x300005    0x300006      
+                            0x300008    0x30000d      
+            1030 out of 33048 program addresses used, program memory utilization is 3%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                  AJUSTE1   0x0003a8    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                  AJUSTE2   0x0003ba    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                  AJUSTE3   0x0003cc    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+               CONFIG_LCD   0x000300    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                  CONF_IO   0x000020    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+           CONTRA_INICIAL   0x00003a    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                EE_VERIFY   0x000100    program     static F:\PROYECTO\CERRA_18.X\VERIFICACION.INC
+                 ENV_BYTE   0x000336    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                  ENV_CAR   0x00032e    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                  ENV_CMD   0x000326    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                   FINISH   0x00049c    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                       I1   0x000122    program     static F:\PROYECTO\CERRA_18.X\VERIFICACION.INC
+                   INICIO   0x000052    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                       L1   0x000400    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                       L2   0x0003f2    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                MEN_ERROR   0x0002b4    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+              MEN_INGRESE   0x000410    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                 MEN_PASS   0x000144    program     static F:\PROYECTO\CERRA_18.X\VERIFICACION.INC
+                  MEN_PUT   0x000268    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+                   MERROR   0x0002bc    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+                    MILIS   0x0003f0    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                   MINGRE   0x00041e    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                     MPUT   0x000276    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+                 NEW_PASS   0x00011a    program     static F:\PROYECTO\CERRA_18.X\VERIFICACION.INC
+                     PASS   0x000152    program     static F:\PROYECTO\CERRA_18.X\VERIFICACION.INC
+                      PUT   0x000392    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                     PUT1   0x00022e    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+                     PUT2   0x000254    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+                     PUT3   0x00025c    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+                 PUT_PASS   0x000200    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+                  READ_EE   0x000190    program     static F:\PROYECTO\CERRA_18.X\EEPROM.INC
+             ROTA_MENSAJE   0x00048c    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                      T1M   0x0003fc    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                     TEC1   0x000374    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                     TEC2   0x00038c    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                  TECLADO   0x000358    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                  T_ERROR   0x0002d4    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+                T_INGRESE   0x000436    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+               T_NEW_PASS   0x00016a    program     static F:\PROYECTO\CERRA_18.X\VERIFICACION.INC
+                    T_PUT   0x00028e    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+                T_WELCOME   0x00009a    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                      VER   0x000104    program     static F:\PROYECTO\CERRA_18.X\VERIFICACION.INC
+                      WEL   0x000076    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                     WEL2   0x00008e    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                  WELCOME   0x000068    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                      WRI   0x0001ba    program     static F:\PROYECTO\CERRA_18.X\EEPROM.INC
+                 WRITE_EE   0x0001a0    program     static F:\PROYECTO\CERRA_18.X\EEPROM.INC
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                  CONF_IO   0x000020    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+           CONTRA_INICIAL   0x00003a    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                   INICIO   0x000052    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                  WELCOME   0x000068    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                      WEL   0x000076    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                     WEL2   0x00008e    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                T_WELCOME   0x00009a    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                EE_VERIFY   0x000100    program     static F:\PROYECTO\CERRA_18.X\VERIFICACION.INC
+                      VER   0x000104    program     static F:\PROYECTO\CERRA_18.X\VERIFICACION.INC
+                 NEW_PASS   0x00011a    program     static F:\PROYECTO\CERRA_18.X\VERIFICACION.INC
+                       I1   0x000122    program     static F:\PROYECTO\CERRA_18.X\VERIFICACION.INC
+                 MEN_PASS   0x000144    program     static F:\PROYECTO\CERRA_18.X\VERIFICACION.INC
+                     PASS   0x000152    program     static F:\PROYECTO\CERRA_18.X\VERIFICACION.INC
+               T_NEW_PASS   0x00016a    program     static F:\PROYECTO\CERRA_18.X\VERIFICACION.INC
+                  READ_EE   0x000190    program     static F:\PROYECTO\CERRA_18.X\EEPROM.INC
+                 WRITE_EE   0x0001a0    program     static F:\PROYECTO\CERRA_18.X\EEPROM.INC
+                      WRI   0x0001ba    program     static F:\PROYECTO\CERRA_18.X\EEPROM.INC
+                 PUT_PASS   0x000200    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+                     PUT1   0x00022e    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+                     PUT2   0x000254    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+                     PUT3   0x00025c    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+                  MEN_PUT   0x000268    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+                     MPUT   0x000276    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+                    T_PUT   0x00028e    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+                MEN_ERROR   0x0002b4    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+                   MERROR   0x0002bc    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+                  T_ERROR   0x0002d4    program     static F:\PROYECTO\CERRA_18.X\PASSWORD.INC
+               CONFIG_LCD   0x000300    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                  ENV_CMD   0x000326    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                  ENV_CAR   0x00032e    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                 ENV_BYTE   0x000336    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                  TECLADO   0x000358    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                     TEC1   0x000374    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                     TEC2   0x00038c    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                      PUT   0x000392    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                  AJUSTE1   0x0003a8    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                  AJUSTE2   0x0003ba    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                  AJUSTE3   0x0003cc    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                    MILIS   0x0003f0    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                       L2   0x0003f2    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                      T1M   0x0003fc    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+                       L1   0x000400    program     static F:\PROYECTO\CERRA_18.X\LIBRERIA.INC
+              MEN_INGRESE   0x000410    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                   MINGRE   0x00041e    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                T_INGRESE   0x000436    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+             ROTA_MENSAJE   0x00048c    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+                   FINISH   0x00049c    program     static F:\PROYECTO\CERRA_18.X\MAIN.asm
+
+
